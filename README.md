@@ -1,5 +1,8 @@
 Website exhibition musik interaktif bertema Indonesian Music Archive yang dibuat untuk kebutuhan pameran musik digital modern.
 Project ini menampilkan biography musisi Indonesia dengan pengalaman visual immersive bergaya editorial modern seperti kombinasi museum digital, Spotify showcase, dan Apple Music artist page.
+Fokus utama project adalah menciptakan pengalaman visual yang immersive untuk pengunjung pameran musik.
+
+## Features
 
 ## Tech Stacks
 - HTML5
@@ -50,7 +53,7 @@ Project ini dioptimalkan untuk kebutuhan pameran fullscreen tanpa tampilan brows
   ALT + F4
   ```
 
-|||
+|--|--|
 |Resolution|1920x1080|
 |Browser|Microsoft Edge|
 |Auto-hide Taskbar|Enable|
