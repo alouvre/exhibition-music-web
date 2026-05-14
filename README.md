@@ -1,9 +1,6 @@
 # 🎵 Indonesian Music Archive
 
-An interactive music exhibition website created for a modern digital music exhibition experience.  
-This project showcases the biographies of Indonesian musicians through an immersive editorial-style interface inspired by digital museums, Spotify showcases, and Apple Music artist pages.
-
-The main goal of this project is to create a cinematic and immersive visual experience for exhibition visitors.
+An interactive music exhibition website created for a modern digital music exhibition experience. This project showcases the biographies of Indonesian musicians through an immersive editorial-style interface inspired by digital museums, Spotify showcases, and Apple Music artist pages. The main goal of this project is to create a cinematic and immersive visual experience for exhibition visitors.
 
 ## Features
 
