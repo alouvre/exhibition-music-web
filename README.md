@@ -69,8 +69,6 @@ This project is optimized for fullscreen exhibition and kiosk displays without v
   ALT + F4
   ```
 
----
-
 ## Recommended Exhibition Setup
 
 | Configuration | Recommendation |
@@ -82,10 +80,6 @@ This project is optimized for fullscreen exhibition and kiosk displays without v
 | Display Mode | Fullscreen |
 | Internet Connection | Wired Connection Recommended |
 
----
-
----
-
 ## Design Inspiration
 
 - Spotify Editorial
@@ -93,8 +87,6 @@ This project is optimized for fullscreen exhibition and kiosk displays without v
 - Modern Museum Exhibition
 - Contemporary Digital Archive
 - Luxury Fashion Website Aesthetic
-
----
 
 ## License
 
