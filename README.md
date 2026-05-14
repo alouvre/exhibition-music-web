@@ -53,7 +53,7 @@ Project ini dioptimalkan untuk kebutuhan pameran fullscreen tanpa tampilan brows
   ALT + F4
   ```
 
-|--|--|
+|tes|tes|
 |Resolution|1920x1080|
 |Browser|Microsoft Edge|
 |Auto-hide Taskbar|Enable|
