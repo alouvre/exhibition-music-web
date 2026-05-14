@@ -35,21 +35,22 @@ project-root/
 ## Setup & Installation
 Project ini dioptimalkan untuk kebutuhan pameran fullscreen tanpa tampilan browser.
 
-1. Launch Microsoft Edge Kiosk Mode
+### 1. Launch Microsoft Edge Kiosk Mode
   ```powershell
   start-process msedge.exe "--kiosk https://exhibition-music-2026.netlify.app/ --edge-kiosk-type=fullscreen"
   ```
 
-2. Launch Chrome Kiosk Mode
+### 2. Launch Chrome Kiosk Mode
   ```powershell
   chrome.exe --kiosk "https://exhibition-music-2026.netlify.app/"
   ```
 
-3. Exit Kiosk Mode
+### 3. Exit Kiosk Mode
   ```
   ALT + F4
   ```
 
+|||
 |Resolution|1920x1080|
 |Browser|Microsoft Edge|
 |Auto-hide Taskbar|Enable|
