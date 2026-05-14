@@ -33,6 +33,7 @@ project-root/
 ```
 
 ## Setup & Installation
+Project ini dioptimalkan untuk kebutuhan pameran fullscreen tanpa tampilan browser.
 
 1. Launch Microsoft Edge Kiosk Mode
   ```powershell
@@ -48,6 +49,11 @@ project-root/
   ```
   ALT + F4
   ```
+
+|Resolution|1920x1080|
+|Browser|Microsoft Edge|
+|Auto-hide Taskbar|Enable|
+|Sleep Mode|Disable|
 
 ## License
 
