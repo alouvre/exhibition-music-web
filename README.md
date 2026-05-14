@@ -35,19 +35,19 @@ project-root/
 ## Setup & Installation
 
 1. Launch Microsoft Edge Kiosk Mode
-```powershell
-start-process msedge.exe "--kiosk https://exhibition-music-2026.netlify.app/ --edge-kiosk-type=fullscreen"
-```
+  ```powershell
+  start-process msedge.exe "--kiosk https://exhibition-music-2026.netlify.app/ --edge-kiosk-type=fullscreen"
+  ```
 
 2. Launch Chrome Kiosk Mode
-```powershell
-chrome.exe --kiosk "https://exhibition-music-2026.netlify.app/"
-```
+  ```powershell
+  chrome.exe --kiosk "https://exhibition-music-2026.netlify.app/"
+  ```
 
 3. Exit Kiosk Mode
-```
-ALT + F4
-```
+  ```
+  ALT + F4
+  ```
 
 ## License
 
