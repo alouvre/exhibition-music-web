@@ -1,35 +1,129 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
-import { Play, Pause, ChevronRight, Instagram, Twitter, Globe, Volume2, Maximize, Disc, Clock } from 'lucide-react';
+import { Play, Pause, ChevronRight, Instagram, Twitter, Globe, Volume2, Maximize, Disc, Clock, ArrowLeft, ArrowDownRight } from 'lucide-react';
 
-// --- Constants & Data ---
-const ARTIST_DATA = {
-  name: "KAIROS",
-  genre: "ELECTRONIC / AVANT-GARDE / MINIMAL",
-  origin: "BERLIN, GERMANY",
-  activeSince: "2018",
-  biography: "Kairos is a transdisciplinary artist exploring the tension between organic textures and synthetic resonance. Based in Berlin, their work transcends traditional performance, creating immersive sonic architectures that challenge the boundaries of perception. With a focus on granular synthesis and field recordings, Kairos has redefined the landscape of modern electronic music.",
-  quote: "Sound is not a medium for communication, but a physical space to inhabit.",
-  songs: [
-    { id: "01", title: "Temporal Shift", album: "Aetheria", duration: "6:12" },
-    { id: "02", title: "Glass Resonance", album: "Aetheria", duration: "4:45" },
-    { id: "03", title: "Subterranean Echoes", album: "Primal Logic", duration: "5:30" },
-    { id: "04", title: "Void Walkers", album: "Void", duration: "7:02" },
-    { id: "05", title: "Kinetic Stillness", album: "Single", duration: "3:58" },
-  ],
-  albums: [
-    { title: "Aetheria", year: "2024", cover: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400" },
-    { title: "Void", year: "2022", cover: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=400" },
-    { title: "Primal Logic", year: "2020", cover: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400" },
-    { title: "Fragments", year: "2018", cover: "https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=400" },
-  ],
-  timeline: [
-    { year: "2018", event: "Formation of Fragments project in subterranean Berlin." },
-    { year: "2020", event: "Release of 'Primal Logic', marking a shift to structural minimalism." },
-    { year: "2022", event: "The 'Void' Tour: A sold-out 12-city immersive exhibition." },
-    { year: "2024", event: "Launch of 'Aetheria', a multi-sensory digital experience." },
-  ]
-};
+// --- Types ---
+interface Song {
+  id: string;
+  title: string;
+  album: string;
+  duration: string;
+}
+
+interface Album {
+  title: string;
+  year: string;
+  cover: string;
+}
+
+interface TimelineItem {
+  year: string;
+  event: string;
+}
+
+interface Musician {
+  id: string;
+  name: string;
+  genre: string;
+  origin: string;
+  activeSince: string;
+  biography: string;
+  quote: string;
+  image: string;
+  songs: Song[];
+  albums: Album[];
+  timeline: TimelineItem[];
+}
+
+// --- Data ---
+const MUSICIANS: Musician[] = [
+  {
+    id: 'ian-antono',
+    name: 'IAN ANTONO',
+    genre: 'ROCK LEGEND',
+    origin: 'MALANG, ID',
+    activeSince: '1970',
+    biography: 'Ian Antono is a titan of Indonesian rock. As the legendary lead guitarist of God Bless, his riffs helped define the sound of an era. Known for his technical precision and melodic sensibility, he is often cited as the most influential guitarist in Indonesian history.',
+    quote: "Rock is not just music, it is an attitude and a soul that never dies.",
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800',
+    songs: [
+      { id: '01', title: 'Rumah Kita', album: 'Semut Hitam', duration: '4:48' },
+      { id: '02', title: 'Semut Hitam', album: 'Semut Hitam', duration: '5:45' },
+      { id: '03', title: 'Panggung Sandiwara', album: 'Cermin', duration: '4:12' },
+    ],
+    albums: [
+      { title: 'Semut Hitam', year: '1988', cover: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400' },
+      { title: 'Cermin', year: '1980', cover: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=400' },
+    ],
+    timeline: [
+      { year: '1974', event: 'Joined God Bless, changing the landscape of Indonesian rock.' },
+      { year: '1988', event: 'Released "Semut Hitam", the highest-selling rock album in ID.' },
+    ]
+  },
+  {
+    id: 'toto-tewel',
+    name: 'TOTO TEWEL',
+    genre: 'BLUES ROCK',
+    origin: 'MALANG, ID',
+    activeSince: '1980',
+    biography: 'Known for his work with Elpamas and as a session virtuoso for Iwan Fals and Kantata Takwa, Toto Tewel is the master of Indonesian blues-rock expression. His stage presence and raw energy are unmatched.',
+    quote: "Every note should tell a story of life and struggle.",
+    image: 'https://images.unsplash.com/photo-1525994886773-b205b8556617?q=80&w=800',
+    songs: [
+      { id: '01', title: 'Pak Tua', album: 'Dinding-Dinding Kota', duration: '5:10' },
+      { id: '02', title: 'Dinding-Dinding Kota', album: 'Dinding-Dinding Kota', duration: '4:55' },
+    ],
+    albums: [
+      { title: 'Dinding-Dinding Kota', year: '1989', cover: 'https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=400' },
+    ],
+    timeline: [
+      { year: '1983', event: 'Founded Elpamas, bringing a new energy to the local scene.' },
+      { year: '1990', event: 'Collaborated on the historic Kantata Takwa project.' },
+    ]
+  },
+  {
+    id: 'sylvia-saartje',
+    name: 'SYLVIA SAARTJE',
+    genre: 'LADY ROCK',
+    origin: 'ARNHEM, NL',
+    activeSince: '1970',
+    biography: 'The "Lady Rocker" of Indonesia. Sylvia Saartje was a trailblazer for women in the male-dominated rock scene of the 70s and 80s. Her powerful voice and rebellious spirit paved the way for generations of female artists.',
+    quote: "Rock has no gender. It only has truth.",
+    image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800',
+    songs: [
+      { id: '01', title: 'Biarkan', album: 'Biar Semua Hilang', duration: '4:20' },
+      { id: '02', title: 'Jakarta Blue Jeans', album: 'Single', duration: '3:50' },
+    ],
+    albums: [
+      { title: 'Biar Semua Hilang', year: '1981', cover: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400' },
+    ],
+    timeline: [
+      { year: '1970', event: 'Started her career with Tornado group.' },
+      { year: '1981', event: 'Iconic performance at the first National Rock Festival.' },
+    ]
+  },
+  {
+    id: 'sal-priadi',
+    name: 'SAL PRIADI',
+    genre: 'ALT POP',
+    origin: 'MALANG, ID',
+    activeSince: '2015',
+    biography: 'A modern icon of Indonesian alternative music. Sal Priadi blends poetic lyricism with eccentric pop sensibilities, creating a theatrical experience that resonates with the modern generation.',
+    quote: "I write what my heart fails to say out loud.",
+    image: 'https://images.unsplash.com/photo-1520166012956-add9ba0835cb?q=80&w=800',
+    songs: [
+      { id: '01', title: 'Amin Paling Serius', album: 'Berhati', duration: '5:22' },
+      { id: '02', title: 'Mesra-mesraannya kecil-kecilan dulu', album: 'Markers and Such', duration: '4:15' },
+    ],
+    albums: [
+      { title: 'Berhati', year: '2020', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=400' },
+    ],
+    timeline: [
+      { year: '2018', event: 'Breakthrough with the single "Kultusan".' },
+      { year: '2020', event: 'Released the critically acclaimed album "Berhati".' },
+    ]
+  }
+];
 
 // --- Sub-components ---
 
@@ -72,12 +166,12 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
       transition={{ duration: 1 }}
     >
       <motion.div
-        className="text-4xl font-display font-bold tracking-widest"
+        className="text-2xl md:text-4xl font-display font-black tracking-[0.3em] uppercase text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        {ARTIST_DATA.name}
+        Indonesian Music Archive
       </motion.div>
       <motion.div
         className="w-48 h-[1px] bg-white/20 mt-8 relative overflow-hidden"
@@ -92,20 +186,13 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         />
       </motion.div>
-      <motion.div
-        className="mt-4 text-[10px] tracking-[0.4em] opacity-40 uppercase"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ delay: 1 }}
-      >
-        Modern Music Exhibition_2026
-      </motion.div>
     </motion.div>
   );
 };
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [selectedMusician, setSelectedMusician] = useState<Musician | null>(null);
   const [exhibitionMode, setExhibitionMode] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -132,321 +219,327 @@ export default function App() {
       <main className={`transition-colors duration-1000 ${exhibitionMode ? 'bg-zinc-950 text-off-white' : 'bg-off-white text-ink'}`}>
         
         {/* Header */}
-        <header className="fixed top-0 left-0 w-full p-12 flex justify-between items-baseline z-[80]">
-          <div className="text-[11px] font-bold tracking-[0.3em] uppercase mix-blend-difference invert">Music Exhibition Archive / 2026</div>
+        <header className="fixed top-0 left-0 w-full p-8 md:p-12 flex justify-between items-baseline z-[80]">
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black tracking-[0.3em] uppercase mix-blend-difference invert cursor-pointer" onClick={() => setSelectedMusician(null)}>Indonesian Music Archive</span>
+            <span className="text-[8px] opacity-40 uppercase tracking-[0.2em] mix-blend-difference invert mt-1">Exhibition 2026 // Vol. 01</span>
+          </div>
           
-          <nav className="hidden md:flex gap-12 text-[11px] items-center tracking-[0.2em] uppercase mix-blend-difference invert">
-            <a href="#bio" className="opacity-40 hover:opacity-100 transition-opacity">01 — Identity</a>
-            <a href="#songs" className="opacity-40 hover:opacity-100 transition-opacity">02 — Catalog</a>
-            <a href="#archive" className="hover:opacity-100 transition-opacity">03 — Playback</a>
+          <nav className="hidden md:flex gap-12 text-[10px] items-center tracking-[0.2em] uppercase mix-blend-difference invert font-bold">
+            <a href="#showcase" className="opacity-40 hover:opacity-100 transition-opacity">Legends</a>
+            <a href="#archive" className="opacity-40 hover:opacity-100 transition-opacity">Archive</a>
           </nav>
 
-          <div className="flex items-center gap-8">
-            <div className="text-[11px] font-bold tracking-[0.3em] uppercase hidden md:block mix-blend-difference invert">Entry No. 8821</div>
-            <button 
-              onClick={() => setExhibitionMode(!exhibitionMode)}
-              className={`flex items-center gap-2 px-6 py-2 border text-[10px] tracking-[0.3em] transition-all uppercase font-bold ${
-                exhibitionMode ? 'border-white hover:bg-white hover:text-black' : 'border-black hover:bg-black hover:text-white'
-              }`}
-            >
-              {exhibitionMode ? 'Exit Mode' : 'Exhibition'}
-            </button>
-          </div>
+          <button 
+            onClick={() => setExhibitionMode(!exhibitionMode)}
+            className={`px-6 py-2 border text-[9px] tracking-[0.3em] transition-all uppercase font-bold ${
+              exhibitionMode ? 'border-white hover:bg-white hover:text-black' : 'border-black hover:bg-black hover:text-white'
+            }`}
+          >
+            {exhibitionMode ? 'Exit Mode' : 'Exhibition'}
+          </button>
         </header>
 
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center p-12 overflow-hidden pt-32 md:pt-0">
-          <div className="container max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center relative z-10 w-full h-full">
-            
-            {/* Left Column: Visual & Bio-mini */}
-            <div className="w-full md:w-1/2 flex flex-col justify-between h-full space-y-12">
-              <motion.div 
-                className={`relative w-full md:w-96 aspect-square group overflow-hidden ${exhibitionMode ? 'bg-zinc-800' : 'bg-[#D9D7D2]'}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, delay: 0.5 }}
-              >
-                <img 
-                  src="https://images.unsplash.com/photo-1549412640-9fe47a4697a2?q=80&w=800" 
-                  alt="Kairos"
-                  className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-1000 hover:scale-105 opacity-80 group-hover:opacity-100"
-                />
-                {/* Decorative circle overlay from theme */}
-                <div className="absolute bottom-8 right-8 w-48 h-48 border border-white/10 rounded-full flex items-center justify-center pointer-events-none">
-                  <div className="w-32 h-32 rounded-full border border-white/5 flex items-center justify-center">
-                    <Disc className="text-white/10 animate-spin-slow" size={32} />
+        {!selectedMusician && (
+          <section className="relative min-h-screen flex items-center justify-center p-12 overflow-hidden">
+            <div className="container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between relative z-10 w-full">
+              <div className="w-full md:w-1/2">
+                <motion.span 
+                  className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-40 block mb-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  Interactive Music Experience
+                </motion.span>
+                <motion.h1 
+                  className="text-[10vw] md:text-[8vw] font-black leading-[0.8] tracking-tighter uppercase italic"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                >
+                  SOUNDS OF<br/>INDONESIA
+                </motion.h1>
+                <motion.div 
+                  className="mt-12 flex items-center gap-6"
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ delay: 1 }}
+                >
+                  <div className="w-16 h-[1px] bg-accent" />
+                  <p className="text-xs uppercase tracking-[0.3em] font-medium opacity-60">Exploration of Legends & Icons</p>
+                </motion.div>
+              </div>
+
+              <div className="w-full md:w-1/3 mt-24 md:mt-0 flex justify-end">
+                <motion.div 
+                  className="relative group cursor-pointer"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 1.2, delay: 0.5 }}
+                >
+                  <div className="w-64 h-64 md:w-80 md:h-80 border border-ink/10 flex items-center justify-center relative overflow-hidden bg-white/5">
+                    <Disc className="text-ink opacity-10 animate-spin-slow" size={240} strokeWidth={0.5} />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                       <span className="text-[10px] font-black uppercase tracking-widest bg-ink text-off-white px-4 py-2">Start Journey</span>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-
-              <div className="max-w-sm">
-                <motion.p 
-                  className="text-[10px] uppercase tracking-[0.3em] text-accent font-black mb-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  The Artist Portrait
-                </motion.p>
-                <motion.p 
-                  className="text-sm leading-relaxed opacity-60 font-medium"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                >
-                  A multidisciplinary auditory pioneer, blending structural synthesis with architectural textures. Born in Berlin, active within the void.
-                </motion.p>
-              </div>
-
-              <div className={`border-t pt-8 flex items-end gap-12 ${exhibitionMode ? 'border-white/10' : 'border-black/10'}`}>
-                <div>
-                  <span className="block text-[9px] uppercase tracking-tighter opacity-30 mb-2">Origin</span>
-                  <span className="text-xs font-bold uppercase tracking-[0.2em]">{ARTIST_DATA.origin}</span>
-                </div>
-                <div>
-                  <span className="block text-[9px] uppercase tracking-tighter opacity-30 mb-2">Period</span>
-                  <span className="text-xs font-bold uppercase tracking-[0.2em]">{ARTIST_DATA.activeSince} — PRST</span>
-                </div>
-                <div>
-                  <span className="block text-[9px] uppercase tracking-tighter opacity-30 mb-2">Genre</span>
-                  <span className="text-xs font-bold uppercase tracking-[0.2em]">Void Synth</span>
-                </div>
+                  <div className="absolute -bottom-8 -right-8 opacity-20 text-6xl font-black italic">Archive</div>
+                </motion.div>
               </div>
             </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] text-[400px] font-black pointer-events-none select-none z-0">2026</div>
+          </section>
+        )}
 
-            {/* Right Column: Massive Heading */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:items-end md:text-right relative">
-              <div className="absolute -top-12 md:right-0 text-[10px] uppercase tracking-[0.5em] opacity-30">Musician Showcase</div>
-              <motion.h1 
-                className="text-[15vw] md:text-[10vw] font-black leading-[0.8] italic uppercase tracking-tighter"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}
-              >
-                KAI<br/>ROS
-              </motion.h1>
-              
-              <motion.div 
-                className="mt-12 w-full max-w-xs space-y-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.4 }}
-              >
-                <div className={`p-4 border italic text-xs leading-relaxed opacity-50 ${exhibitionMode ? 'border-white/10' : 'border-black/5'}`}>
-                   "Exploring the architectural stillness between frequencies. An archive of synthetic life."
+        {/* Musicians Showcase */}
+        {!selectedMusician && (
+          <section id="showcase" className="min-h-screen py-32 p-12 bg-zinc-100/30">
+            <div className="container max-w-7xl mx-auto">
+              <div className="flex justify-between items-end mb-24">
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-accent mb-4 block">Curated Selection</span>
+                  <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none">The Icons</h2>
                 </div>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Decorative background numbers */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] text-[400px] font-black pointer-events-none select-none z-0">
-            2026
-          </div>
-        </section>
-
-        {/* Biography Section */}
-        <section id="bio" className={`min-h-screen py-48 p-12 border-y transition-colors duration-500 ${exhibitionMode ? 'border-white/5' : 'border-black/5'}`}>
-          <div className="container max-w-7xl mx-auto flex flex-col md:flex-row gap-24">
-            <div className="md:w-1/2">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
-              >
-                <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-accent mb-12 block underline decoration-accent/30 underline-offset-8">Bio Index</span>
-                <h2 className="text-6xl md:text-8xl font-black mb-12 leading-[0.85] uppercase tracking-tighter">STRUCTURAL<br/>SYMMETRY.</h2>
-                <div className="text-lg md:text-xl leading-relaxed font-light opacity-60 max-w-xl">
-                  {ARTIST_DATA.biography}
+                <div className="text-right hidden md:block">
+                  <span className="text-[10px] opacity-40 uppercase tracking-widest">Selected Entities</span>
+                  <span className="block text-[14px] font-black">01 // 04</span>
                 </div>
-              </motion.div>
-            </div>
+              </div>
 
-            <div className="md:w-1/2 flex flex-col justify-end">
-              <div className={`relative border-l pl-12 space-y-16 ${exhibitionMode ? 'border-white/10' : 'border-black/10'}`}>
-                {ARTIST_DATA.timeline.map((item, idx) => (
-                  <motion.div 
-                    key={idx}
-                    className="relative"
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {MUSICIANS.map((artist, idx) => (
+                  <motion.div
+                    key={artist.id}
+                    className="group relative aspect-[3/4] overflow-hidden bg-zinc-800 cursor-pointer border border-ink/5"
+                    whileHover={{ y: -10 }}
+                    onClick={() => setSelectedMusician(artist)}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.2 }}
+                    transition={{ delay: idx * 0.1 }}
                   >
-                    <div className="absolute -left-[53px] top-2 w-2 h-2 bg-accent" />
-                    <span className="text-2xl md:text-4xl font-black mb-2 block tracking-tighter uppercase">{item.year}</span>
-                    <p className="text-[10px] tracking-[0.2em] uppercase opacity-40 max-w-sm font-bold">{item.event}</p>
+                    <img src={artist.image} alt={artist.name} className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-110" />
+                    <div className="absolute inset-0 p-8 flex flex-col justify-between z-10 text-off-white">
+                      <span className="text-[10px] font-black tracking-widest opacity-60 uppercase">{artist.genre}</span>
+                      <div>
+                        <h3 className="text-3xl font-black uppercase tracking-tighter italic mb-2 leading-none">{artist.name}</h3>
+                        <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0 duration-500">
+                          <span className="text-[9px] font-bold uppercase tracking-widest">Entry</span>
+                          <ArrowDownRight size={14} className="text-accent" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                   </motion.div>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        {/* Quote Section */}
-        <section className="relative py-48 p-12 flex items-center justify-center overflow-hidden bg-accent text-off-white">
-          <motion.div 
-            className="container max-w-5xl mx-auto text-center z-10"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <span className="text-[7vw] md:text-[4vw] font-display font-medium leading-tight italic tracking-tighter uppercase font-black">
-              "{ARTIST_DATA.quote}"
-            </span>
-            <div className="mt-12 flex items-center justify-center gap-8">
-              <div className="w-16 h-[1px] bg-white/30" />
-              <span className="text-[10px] uppercase tracking-[0.5em] font-black opacity-80">— Kairos Manifesto</span>
-              <div className="w-16 h-[1px] bg-white/30" />
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Popular Songs UI - Themed */}
-        <section id="songs" className="py-48 p-12">
-          <div className="container max-w-7xl mx-auto">
-            <div className="flex justify-between items-end mb-16">
-              <div>
-                <span className="text-[10px] uppercase tracking-[0.5em] font-black opacity-40 mb-4 block">Cataloged Frequencies</span>
-                <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none">Recordings</h2>
-              </div>
-              <div className="hidden md:flex flex-col text-right">
-                 <span className="text-[10px] opacity-40 uppercase tracking-widest mb-1">Archive Segment</span>
-                 <span className="text-xs font-bold tracking-widest">Scroll 01/04</span>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              {ARTIST_DATA.songs.map((song, idx) => (
-                <motion.div 
-                  key={idx}
-                  className={`group flex items-center justify-between py-8 border-t transition-all cursor-pointer relative overflow-hidden ${
-                    exhibitionMode ? 'border-white/5 hover:bg-white/5 px-4' : 'border-black/5 hover:bg-black/5 px-4'
-                  }`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                >
-                  <div className="flex items-center gap-12">
-                    <span className="text-[10px] italic opacity-20 group-hover:opacity-100 transition-opacity translate-y-1">{song.id}</span>
-                    <div className="flex flex-col">
-                      <span className="text-2xl font-bold tracking-tight uppercase group-hover:text-accent transition-colors">{song.title}</span>
-                      <span className="text-[9px] uppercase tracking-[0.2em] opacity-30 font-black">{song.album}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-12">
-                     <div className="w-2 h-2 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-all duration-500 scale-0 group-hover:scale-100" />
-                     <span className="text-[10px] font-mono font-bold opacity-40 tabular-nums">P_{song.duration.replace(':', '.')}_S</span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Archive / Gallery - Themed */}
-        <section id="archive" className="py-48 p-12">
-          <div className="container max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
-            <div className="md:w-1/3">
-              <div className="sticky top-48">
-                <h2 className="text-6xl font-black uppercase tracking-tighter leading-none mb-8 italic">THE<br/>GALLERY</h2>
-                <div className="w-24 h-[2px] bg-accent mb-8" />
-                <p className="text-sm leading-relaxed opacity-50 uppercase tracking-widest font-medium">Physical pressings and digital artifacts collected from the Berlin underground.</p>
-              </div>
-            </div>
-            <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-px bg-black/10 border border-black/10">
-              {ARTIST_DATA.albums.map((album, idx) => (
-                <motion.div 
-                  key={idx}
-                  className="group relative aspect-[4/5] overflow-hidden bg-off-white"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                >
-                  <img src={album.cover} alt={album.title} className="w-full h-full object-cover grayscale opacity-20 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000 scale-[1.01] group-hover:scale-105" />
-                  <div className="absolute inset-0 p-8 flex flex-col justify-between mix-blend-difference invert group-hover:text-white group-hover:mix-blend-normal">
-                    <span className="text-[10px] font-black tracking-widest opacity-40">{album.year}</span>
-                    <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter mb-2 italic">{album.title}</h3>
-                      <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                         <span className="text-[8px] uppercase tracking-widest font-black">View Catalog</span>
-                         <ChevronRight size={12} className="text-accent" />
+        {/* Selected Musician Detail View */}
+        <AnimatePresence mode="wait">
+          {selectedMusician && (
+            <motion.div
+              key={selectedMusician.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="min-h-screen"
+            >
+              <section className="relative min-h-screen py-48 p-12">
+                <div className="container max-w-7xl mx-auto flex flex-col md:flex-row gap-24 relative z-10">
+                  <div className="w-full md:w-1/2 flex flex-col justify-between">
+                    <motion.div
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                    >
+                      <button 
+                        onClick={() => setSelectedMusician(null)}
+                        className="flex items-center gap-4 text-[10px] uppercase tracking-[0.5em] font-bold group mb-12 hover:text-accent transition-colors"
+                      >
+                        <ArrowLeft size={14} className="group-hover:-translate-x-2 transition-transform" />
+                        Return to Showcase
+                      </button>
+                      <h2 className="text-[12vw] font-black leading-[0.8] italic uppercase tracking-tighter mb-12">{selectedMusician.name}</h2>
+                      <div className="max-w-md text-lg leading-relaxed font-light opacity-60">
+                        {selectedMusician.biography}
                       </div>
+                    </motion.div>
+
+                    <div className="mt-24 space-y-12 border-l-2 border-accent pl-12">
+                      {selectedMusician.timeline.map((item, idx) => (
+                        <div key={idx}>
+                          <span className="text-4xl font-black tracking-tighter mb-2 block">{item.year}</span>
+                          <p className="text-[10px] uppercase tracking-widest opacity-40 font-bold max-w-xs">{item.event}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* Footer - Themed with Wave Visual and Serif Quote */}
-        <footer id="social" className={`py-32 p-12 border-t border-black transition-colors duration-500 overflow-hidden relative z-10`}>
-          <div className="container max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
-            
-            {/* Audio Wave Decor */}
-            <div className="flex gap-12 items-center">
-              <div className="flex space-x-1.5 items-end h-8">
-                <div className="w-1.5 h-6 bg-ink" />
-                <div className="w-1.5 h-4 bg-ink/40" />
-                <div className="w-1.5 h-8 bg-ink" />
-                <div className="w-1.5 h-3 bg-ink/20" />
-                <div className="w-1.5 h-7 bg-ink/60" />
-              </div>
-              <div className="text-[10px] leading-tight opacity-40 uppercase tracking-[0.2em] font-bold">
-                Interactive Exhibition Mode<br/>
-                Archive Stream Active
-              </div>
-            </div>
+                  <div className="w-full md:w-1/2">
+                    <motion.div 
+                      className="aspect-[3/4] bg-zinc-200 overflow-hidden relative grayscale"
+                      initial={{ scale: 1.1, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 1.5 }}
+                    >
+                      <img src={selectedMusician.image} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-ink/10 mix-blend-overlay" />
+                    </motion.div>
+                    
+                    <div className="mt-12 grid grid-cols-2 gap-px bg-ink/5 border border-ink/5">
+                      {selectedMusician.albums.map((album, idx) => (
+                        <div key={idx} className="p-8 bg-off-white/5 backdrop-blur-md">
+                           <span className="text-[10px] font-black tracking-widest opacity-20 block mb-2">{album.year}</span>
+                           <h4 className="text-xl font-black uppercase tracking-tighter italic">{album.title}</h4>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
 
-            {/* Serif Aesthetic Quote */}
-            <div className="text-center md:max-w-md">
-              <p className="italic text-2xl font-serif text-ink opacity-60">
-                "Silence is the canvas, sound is the brush."
+              {/* Quote Layer */}
+              <section className="py-48 bg-accent text-off-white p-12 text-center">
+                 <div className="container max-w-4xl mx-auto">
+                    <motion.div
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                    >
+                      <q className="text-5xl md:text-7xl font-sans font-black italic tracking-tighter leading-none mb-12 block">
+                        {selectedMusician.quote}
+                      </q>
+                      <div className="flex items-center justify-center gap-8 opacity-40">
+                        <div className="w-12 h-[1px] bg-white" />
+                        <span className="text-[10px] uppercase tracking-[0.5em] font-bold">Artist Manifesto</span>
+                        <div className="w-12 h-[1px] bg-white" />
+                      </div>
+                    </motion.div>
+                 </div>
+              </section>
+
+              {/* Tracks Selection */}
+              <section className="py-48 p-12">
+                 <div className="container max-w-7xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+                       <div>
+                         <span className="text-[11px] uppercase tracking-[0.5em] font-bold opacity-30 mb-4 block">Archive Record</span>
+                         <h3 className="text-6xl md:text-7xl font-black tracking-tighter uppercase leading-none italic">Popular<br/>Transmissions</h3>
+                       </div>
+                       <Volume2 size={32} className="opacity-10 animate-pulse" />
+                    </div>
+
+                    <div className="space-y-2">
+                       {selectedMusician.songs.map((song, idx) => (
+                         <div key={idx} className="group flex items-center justify-between py-10 border-b border-ink/5 px-6 hover:bg-zinc-100 transition-colors cursor-pointer">
+                            <div className="flex items-center gap-12">
+                               <span className="text-[10px] opacity-20 font-bold">0{idx + 1}</span>
+                               <div>
+                                  <h5 className="text-2xl font-black uppercase tracking-tighter group-hover:text-accent transition-colors">{song.title}</h5>
+                                  <span className="text-[9px] uppercase tracking-widest opacity-30 font-bold">{song.album}</span>
+                               </div>
+                            </div>
+                            <span className="text-xs font-mono font-bold opacity-30">{song.duration}</span>
+                         </div>
+                       ))}
+                    </div>
+                 </div>
+              </section>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Global Timeline Section */}
+        {!selectedMusician && (
+          <section id="archive" className="py-48 p-12 border-t border-ink/5">
+             <div className="container max-w-7xl mx-auto">
+                <div className="text-center mb-32">
+                   <span className="text-[10px] uppercase tracking-[1em] font-bold opacity-30 mb-8 block">Cultural Timeline</span>
+                   <h2 className="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8]">The Evolution<br/>of ID Music</h2>
+                </div>
+                
+                <div className="flex flex-col gap-px bg-ink/10">
+                   {[
+                     { era: '1970s', label: 'The Rise of Rock', artists: 'God Bless, Sil Saartje' },
+                     { era: '1980s', label: 'Golden Pop Era', artists: 'Chrisye, Ian Antono' },
+                     { era: '1990s', label: 'Indie & Alternative', artists: 'Slank, Dewa 19' },
+                     { era: '2010s', label: 'Modern Renaissance', artists: 'Sal Priadi, Tulus' },
+                   ].map((item, idx) => (
+                     <div key={idx} className="bg-off-white p-12 flex flex-col md:flex-row justify-between items-center group cursor-default">
+                        <div className="text-6xl font-black italic tracking-tighter opacity-10 group-hover:opacity-100 group-hover:text-accent transition-all duration-500">{item.era}</div>
+                        <div className="text-center md:text-right">
+                           <span className="text-xl font-bold uppercase tracking-tighter block mb-2">{item.label}</span>
+                           <span className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-bold">{item.artists}</span>
+                        </div>
+                     </div>
+                   ))}
+                </div>
+             </div>
+          </section>
+        )}
+
+        {/* Footer */}
+        <footer className="py-32 p-12 border-t border-ink mt-48 relative overflow-hidden">
+          <div className="container max-w-7xl mx-auto grid md:grid-cols-3 gap-16 relative z-10">
+            <div className="space-y-8">
+              <span className="text-3xl font-black uppercase tracking-tighter italic">IMA展</span>
+              <p className="text-[10px] uppercase tracking-[0.4em] font-medium opacity-40 leading-relaxed">
+                Indonesian Music Archive (IMA) is a digital tribute to the structural evolution of sound within the archipelago. Dedicated to the visionaries of the past and the architects of the future.
               </p>
             </div>
 
-            {/* Links */}
-            <div className="flex gap-12 text-[11px] font-black uppercase tracking-[0.3em]">
-              <a href="#" className="hover:text-accent transition-colors">Instagram</a>
-              <a href="#" className="hover:text-accent transition-colors">Spotify</a>
-              <a href="#" className="hover:text-accent transition-colors">Archive</a>
+            <div className="space-y-6">
+              <span className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-20 block mb-8">Exhibition Info</span>
+              <div className="space-y-4">
+                 <div className="flex justify-between border-b border-ink/10 pb-4">
+                   <span className="text-[10px] uppercase font-bold opacity-40">Status:</span>
+                   <span className="text-[10px] uppercase font-bold text-accent">Active // Exhibition</span>
+                 </div>
+                 <div className="flex justify-between border-b border-ink/10 pb-4">
+                   <span className="text-[10px] uppercase font-bold opacity-40">Location:</span>
+                   <span className="text-[10px] uppercase font-bold">Virtual Archive X Berlin</span>
+                 </div>
+                 <div className="flex justify-between border-b border-ink/10 pb-4">
+                   <span className="text-[10px] uppercase font-bold opacity-40">Credits:</span>
+                   <span className="text-[10px] uppercase font-bold">Archive_id004</span>
+                 </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between items-end">
+               <div className="flex gap-8 text-[11px] font-black uppercase tracking-[0.3em]">
+                 <a href="#" className="hover:text-accent transition-colors">Twitter</a>
+                 <a href="#" className="hover:text-accent transition-colors">Spotify</a>
+                 <a href="#" className="hover:text-accent transition-colors">Instagram</a>
+               </div>
+               <div className="text-right mt-16 md:mt-0">
+                  <span className="text-[8px] uppercase tracking-[0.6em] font-black opacity-30">© 2026 Archive.ID // All Signals Reserved</span>
+               </div>
             </div>
           </div>
           
-          <div className="container max-w-7xl mx-auto mt-24 pt-8 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-black/5">
-            <span className="text-[8px] tracking-[0.5em] opacity-40 uppercase font-black">Aetheria.Exh // Index_No:8821 // Vol_04</span>
-            <div className="flex gap-12 text-[9px] tracking-[0.3em] font-black opacity-40 uppercase">
-              <span className="hover:text-accent cursor-pointer">Protocol</span>
-              <span className="hover:text-accent cursor-pointer">Security</span>
-              <span className="hover:text-accent cursor-pointer">Credits_2026</span>
-            </div>
+          <div className="absolute -bottom-1/2 left-0 text-[30vw] font-black opacity-[0.02] tracking-tighter pointer-events-none select-none italic">
+            INDONESIA
           </div>
         </footer>
 
       </main>
 
-      {/* Exhibition Mode Indicator */}
-      <AnimatePresence>
-        {exhibitionMode && (
-          <motion.div 
-            className="fixed bottom-12 right-12 z-[100] pointer-events-none flex items-center gap-4"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-          >
-            <div className="flex flex-col text-right">
-              <div className="text-[10px] tracking-[0.3em] uppercase font-bold text-accent">
-                SIGNAL ACTIVE
-              </div>
-              <div className="text-[32px] font-mono leading-none font-bold text-white shadow-lg">
-                BER_FLX_004
-              </div>
-            </div>
-            <div className="w-1.5 h-16 bg-accent animate-pulse" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Global Exhibition Sidebar Decor */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[90] hidden md:flex flex-col items-center gap-8">
+         <div className="h-24 w-[1px] bg-ink/10" />
+         <span className="text-[8px] uppercase tracking-[0.8em] font-black vertical-text opacity-40">IMA_SYSTEM_VOL_1</span>
+         <div className="h-24 w-[1px] bg-ink/10" />
+      </div>
+
+      <style>{`
+        .vertical-text {
+          writing-mode: vertical-rl;
+          text-orientation: mixed;
+        }
+      `}</style>
     </>
   );
 }
