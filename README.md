@@ -48,16 +48,16 @@ project-root/
 
 ## Setup & Installation
 
-This project is optimized for fullscreen exhibition and kiosk displays without visible browser UI.
+This project is optimized for fullscreen exhibition and kiosk displays without visible browser UI. To run this exhibition on a 4K display or Kiosk, use the following PowerShell command for:
 
-### 1. Launch Microsoft Edge Kiosk Mode
+### 1. Launch Microsoft Edge
   ```powershell
-  start-process msedge.exe "--kiosk https://exhibition-music-2026.netlify.app/ --edge-kiosk-type=fullscreen"
+  start-process msedge.exe "--kiosk https://your-deployment-url.app --edge-kiosk-type=fullscreen"
   ```
 
-### 2. Launch Chrome Kiosk Mode
+### 2. Launch Chrome
   ```powershell
-  chrome.exe --kiosk "https://exhibition-music-2026.netlify.app/"
+  chrome.exe --kiosk "https://your-deployment-url.app"
   ```
 
 ### 3. Exit Kiosk Mode
