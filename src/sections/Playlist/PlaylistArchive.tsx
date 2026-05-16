@@ -15,7 +15,7 @@ export const PlaylistSection: React.FC<PlaylistSectionProps> = ({ musician, acti
       
       {/* Left Column: Scrollable Archive List */}
       <div className="w-full md:w-1/2 h-screen flex flex-col p-12 md:p-24 border-r border-white/10 overflow-hidden">
-        <div className="mb-0">
+        <div className="mb-8">
           <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-accent mb-4 block">Music Archive</span>
           <h3 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.8] italic">THE<br/>CATALOG</h3>
         </div>
