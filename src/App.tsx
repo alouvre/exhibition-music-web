@@ -8,7 +8,7 @@ interface Song {
   title: string;
   album: string;
   duration: string;
-  videoUrl?: string; // Optional field for exhibition video
+  youtubeId?: string; // YouTube ID for the active transmission
 }
 
 interface Album {
@@ -48,14 +48,14 @@ const MUSICIANS: Musician[] = [
     quote: "Rock is not just music, it is an attitude and a soul that never dies.",
     image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800',
     songs: [
-      { id: '01', title: 'Rumah Kita', album: 'Semut Hitam', duration: '4:48', videoUrl: 'https://cdn.pixabay.com/video/2023/10/21/185934-877239126_large.mp4' },
-      { id: '02', title: 'Semut Hitam', album: 'Semut Hitam', duration: '5:45', videoUrl: 'https://cdn.pixabay.com/video/2021/04/12/70850-536965176_large.mp4' },
-      { id: '03', title: 'Panggung Sandiwara', album: 'Cermin', duration: '4:12' },
-      { id: '04', title: 'Maret 1989', album: 'Raksasa', duration: '5:20' },
-      { id: '05', title: 'Syair Kehidupan', album: 'Single', duration: '3:55' },
-      { id: '06', title: 'Bus Kota', album: 'Single', duration: '4:05' },
-      { id: '07', title: 'Menjilat Matahari', album: 'Raksasa', duration: '4:50' },
-      { id: '08', title: 'Selamat Pagi Indonesia', album: 'Semut Hitam', duration: '5:12' },
+      { id: '01', title: 'Rumah Kita', album: 'Semut Hitam', duration: '4:48', youtubeId: '_E2S0_GZ6M0' },
+      { id: '02', title: 'Semut Hitam', album: 'Semut Hitam', duration: '5:45', youtubeId: 'pQfU88_QeSw' },
+      { id: '03', title: 'Panggung Sandiwara', album: 'Cermin', duration: '4:12', youtubeId: '9G_7P_76_Z4' },
+      { id: '04', title: 'Maret 1989', album: 'Raksasa', duration: '5:20', youtubeId: 'X7-m3D_y10I' },
+      { id: '05', title: 'Syair Kehidupan', album: 'Single', duration: '3:55', youtubeId: '6qG1S2p6TDU' },
+      { id: '06', title: 'Bus Kota', album: 'Single', duration: '4:05', youtubeId: 'm4J2W-J9xQY' },
+      { id: '07', title: 'Menjilat Matahari', album: 'Raksasa', duration: '4:50', youtubeId: '7P-j8_M1V5s' },
+      { id: '08', title: 'Selamat Pagi Indonesia', album: 'Semut Hitam', duration: '5:12', youtubeId: 'B-jS9_B1V5s' },
     ],
     albums: [
       { title: 'Semut Hitam', year: '1988', cover: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400' },
@@ -76,10 +76,10 @@ const MUSICIANS: Musician[] = [
     quote: "Every note should tell a story of life and struggle.",
     image: 'https://images.unsplash.com/photo-1525994886773-b205b8556617?q=80&w=800',
     songs: [
-      { id: '01', title: 'Pak Tua', album: 'Dinding-Dinding Kota', duration: '5:10', videoUrl: 'https://cdn.pixabay.com/video/2018/11/02/19084-298319696_large.mp4' },
-      { id: '02', title: 'Dinding-Dinding Kota', album: 'Dinding-Dinding Kota', duration: '4:55', videoUrl: 'https://cdn.pixabay.com/video/2016/09/20/5315-183427907_large.mp4' },
-      { id: '03', title: 'Bumi Perkemahan', album: 'Elpamas 2', duration: '4:30' },
-      { id: '04', title: 'Tato', album: 'Elpamas 3', duration: '5:05' },
+      { id: '01', title: 'Pak Tua', album: 'Dinding-Dinding Kota', duration: '5:10', youtubeId: 'fV06sVp06fE' },
+      { id: '02', title: 'Dinding-Dinding Kota', album: 'Dinding-Dinding Kota', duration: '4:55', youtubeId: 'n7-m3D_y10I' },
+      { id: '03', title: 'Bumi Perkemahan', album: 'Elpamas 2', duration: '4:30', youtubeId: 'j8_M1V5sB-j' },
+      { id: '04', title: 'Tato', album: 'Elpamas 3', duration: '5:05', youtubeId: '7P-j8_M1V5s' },
     ],
     albums: [
       { title: 'Dinding-Dinding Kota', year: '1989', cover: 'https://images.unsplash.com/photo-1619983081563-430f63602796?q=80&w=400' },
@@ -99,10 +99,10 @@ const MUSICIANS: Musician[] = [
     quote: "Rock has no gender. It only has truth.",
     image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800',
     songs: [
-      { id: '01', title: 'Biarkan', album: 'Biar Semua Hilang', duration: '4:20', videoUrl: 'https://cdn.pixabay.com/video/2021/04/12/70850-536965176_large.mp4' },
-      { id: '02', title: 'Jakarta Blue Jeans', album: 'Single', duration: '3:50', videoUrl: 'https://cdn.pixabay.com/video/2023/10/21/185934-877239126_large.mp4' },
-      { id: '03', title: 'Ooh... Jakarta', album: 'Single', duration: '4:15' },
-      { id: '04', title: 'Biar Semua Hilang', album: 'Biar Semua Hilang', duration: '5:00' },
+      { id: '01', title: 'Biarkan', album: 'Biar Semua Hilang', duration: '4:20', youtubeId: 'v16N2F9XUoU' },
+      { id: '02', title: 'Jakarta Blue Jeans', album: 'Single', duration: '3:50', youtubeId: 'B-jS9_B1V5s' },
+      { id: '03', title: 'Ooh... Jakarta', album: 'Single', duration: '4:15', youtubeId: '7P-j8_M1V5s' },
+      { id: '04', title: 'Biar Semua Hilang', album: 'Biar Semua Hilang', duration: '5:00', youtubeId: 'm4J2W-J9xQY' },
     ],
     albums: [
       { title: 'Biar Semua Hilang', year: '1981', cover: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400' },
@@ -122,13 +122,13 @@ const MUSICIANS: Musician[] = [
     quote: "I write what my heart fails to say out loud.",
     image: 'https://images.unsplash.com/photo-1520166012956-add9ba0835cb?q=80&w=800',
     songs: [
-      { id: '01', title: 'Amin Paling Serius', album: 'Berhati', duration: '5:22', videoUrl: 'https://cdn.pixabay.com/video/2016/09/20/5315-183427907_large.mp4' },
-      { id: '02', title: 'Mesra-mesraannya kecil-kecilan dulu', album: 'Markers and Such', duration: '4:15', videoUrl: 'https://cdn.pixabay.com/video/2018/11/02/19084-298319696_large.mp4' },
-      { id: '03', title: 'Kultusan', album: 'Single', duration: '4:45' },
-      { id: '04', title: 'Irama La Laut', album: 'Berhati', duration: '4:30' },
-      { id: '05', title: 'Nyala', album: 'Berhati', duration: '3:50' },
-      { id: '06', title: 'Dalam Diam', album: 'Berhati', duration: '5:10' },
-      { id: '07', title: 'Zuzuzaza', album: 'Markers and Such', duration: '3:40' },
+      { id: '01', title: 'Amin Paling Serius', album: 'Berhati', duration: '7:05', youtubeId: 'tCE9U4D995s' },
+      { id: '02', title: 'Mesra-mesraannya kecil-kecilan dulu', album: 'Markers and Such', duration: '4:15', youtubeId: 'u4J2W-J9xQY' },
+      { id: '03', title: 'Kultusan', album: 'Single', duration: '4:45', youtubeId: 'B-jS9_B1V5s' },
+      { id: '04', title: 'Irama La Laut', album: 'Berhati', duration: '4:30', youtubeId: '7P-j8_M1V5s' },
+      { id: '05', title: 'Nyala', album: 'Berhati', duration: '3:50', youtubeId: 'm4J2W-J9xQY' },
+      { id: '06', title: 'Dalam Diam', album: 'Berhati', duration: '5:10', youtubeId: 'X7-m3D_y10I' },
+      { id: '07', title: 'Zuzuzaza', album: 'Markers and Such', duration: '3:40', youtubeId: 'pQfU88_QeSw' },
     ],
     albums: [
       { title: 'Berhati', year: '2020', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=400' },
@@ -466,21 +466,27 @@ export default function App() {
               </section>
 
               {/* Tracks Selection - Redesigned for Split Layout Exhibition */}
-              <section className="min-h-screen bg-ink text-off-white relative flex flex-col md:flex-row overflow-hidden border-t border-white/10">
+              <section className="bg-ink text-off-white relative flex flex-col md:flex-row overflow-hidden border-t border-white/10">
                  
                  {/* Left Column: Scrollable Archive List */}
-                 <div className="w-full md:w-1/2 h-full flex flex-col p-12 md:p-24 border-r border-white/10 overflow-hidden">
-                    <div className="mb-16">
+                 <div className="w-full md:w-1/2 h-screen flex flex-col p-12 md:p-24 border-r border-white/10 overflow-hidden">
+                    <div className="mb-12">
                        <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-accent mb-4 block">Music Archive</span>
                        <h3 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.8] italic">THE<br/>CATALOG</h3>
                     </div>
 
-                    <div className="flex-1 overflow-y-auto no-scrollbar pr-4 space-y-1">
+                    <div className="flex-1 overflow-y-auto no-scrollbar pr-4 space-y-1 relative group/list">
+                       {/* Subtle fade overlay for scroll context */}
+                       <div className="sticky top-0 h-10 w-full bg-gradient-to-b from-ink to-transparent z-10 pointer-events-none opacity-60" />
+                       
                        {selectedMusician.songs.map((song, idx) => (
                          <motion.div 
                            key={idx} 
                            onClick={() => setActiveSong(song)}
                            className={`group relative flex items-center justify-between py-10 px-8 border-b border-white/5 cursor-pointer transition-all duration-500 overflow-hidden ${activeSong?.id === song.id ? 'bg-white/5' : 'hover:bg-white/5'}`}
+                           initial={{ x: -20, opacity: 0 }}
+                           animate={{ x: 0, opacity: 1 }}
+                           transition={{ delay: 0.1 * idx }}
                            whileHover={{ x: 10 }}
                          >
                             <div className="flex items-center gap-12 z-10">
@@ -517,38 +523,41 @@ export default function App() {
                             </div>
                          </motion.div>
                        ))}
+
+                       <div className="sticky bottom-0 h-10 w-full bg-gradient-to-t from-ink to-transparent z-10 pointer-events-none opacity-60" />
                     </div>
                  </div>
 
-                 {/* Right Column: Music Video / Visual Exhibition Wall */}
-                 <div className="w-full md:w-1/2 h-[50vh] md:h-screen sticky top-0 bg-zinc-900 overflow-hidden flex items-center justify-center border-l border-white/10">
+                 {/* Right Column: YouTube Music Video / Visual Exhibition Wall */}
+                 <div className="w-full md:w-1/2 h-[60vh] md:h-screen sticky top-0 bg-zinc-900 overflow-hidden flex items-center justify-center border-l border-white/10">
                     <AnimatePresence mode="wait">
                        <motion.div 
                          key={activeSong?.id || 'static'}
-                         initial={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
-                         animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                         exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
-                         transition={{ duration: 1.2, ease: "circOut" }}
+                         initial={{ opacity: 0, filter: 'blur(20px)' }}
+                         animate={{ opacity: 1, filter: 'blur(0px)' }}
+                         exit={{ opacity: 0, filter: 'blur(20px)' }}
+                         transition={{ duration: 0.8, ease: "circOut" }}
                          className="w-full h-full relative"
                        >
-                          {activeSong?.videoUrl ? (
+                          {activeSong?.youtubeId ? (
                             <div className="w-full h-full relative">
-                              <video 
-                                autoPlay 
-                                muted 
-                                loop 
-                                playsInline 
-                                className="w-full h-full object-cover grayscale opacity-60"
-                                src={activeSong.videoUrl}
-                              />
-                               <div className="absolute inset-0 bg-ink/40 mix-blend-multiply" />
-                               <div className="absolute inset-0 noise-bg opacity-30 pointer-events-none" />
+                              {/* YouTube Embed Layer */}
+                              <iframe
+                                className="w-full h-full object-cover grayscale opacity-60 pointer-events-auto"
+                                src={`https://www.youtube.com/embed/${activeSong.youtubeId}?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`}
+                                title={activeSong.title}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                              ></iframe>
+                               <div className="absolute inset-0 bg-ink/30 mix-blend-multiply pointer-events-none" />
+                               <div className="absolute inset-0 noise-bg opacity-20 pointer-events-none" />
                             </div>
                           ) : (
                             <div className="w-full h-full relative group">
                                <img 
                                  src={selectedMusician.image} 
-                                 className="w-full h-full object-cover grayscale opacity-30" 
+                                 className="w-full h-full object-cover grayscale opacity-20" 
                                />
                                <div className="absolute inset-0 flex flex-col items-center justify-center p-24 text-center">
                                   <motion.div 
@@ -564,30 +573,21 @@ export default function App() {
                           )}
 
                           {/* Video Overlay Typography */}
-                          <div className="absolute bottom-24 left-24 right-24 z-20">
+                          <div className="absolute bottom-16 left-16 right-16 z-20 pointer-events-none">
                              <motion.div
                                initial={{ y: 50, opacity: 0 }}
                                animate={{ y: 0, opacity: 1 }}
                                transition={{ delay: 0.5 }}
                              >
-                                <span className="text-[10px] uppercase tracking-[1em] font-black text-accent mb-4 block">Currently Screening</span>
-                                <h4 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic leading-none">{activeSong?.title || "Exhibition Wall"}</h4>
-                                <div className="mt-8 flex gap-12 items-center">
+                                <h4 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic leading-none">{activeSong?.title || "Exhibition Wall"}</h4>
+                                <div className="mt-6 flex gap-12 items-center">
                                    <div className="flex items-center gap-4">
                                       <span className="text-[8px] uppercase tracking-widest font-black opacity-40">System Status</span>
                                       <div className="w-12 h-[1px] bg-accent" />
-                                      <span className="text-[8px] uppercase tracking-widest font-black">Live feed active</span>
+                                      <span className="text-[8px] uppercase tracking-widest font-black">Live transmission active</span>
                                    </div>
                                 </div>
                              </motion.div>
-                          </div>
-                          
-                          {/* Corner Decor */}
-                          <div className="absolute top-12 left-12 text-[8px] font-mono tracking-widest opacity-20 uppercase">
-                             X_CAM_FEED_01 // MALANG_ARCHIVE
-                          </div>
-                          <div className="absolute top-12 right-12 text-[8px] font-mono tracking-widest opacity-20 uppercase">
-                             2026 // EXP_VOL_01
                           </div>
                        </motion.div>
                     </AnimatePresence>
