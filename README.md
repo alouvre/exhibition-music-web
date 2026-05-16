@@ -1,27 +1,26 @@
-# 🎵 Indonesian Music Archive
+# SOUNDS OF MALANG: Local Music Archive
 
-An interactive music exhibition website created for a modern digital music exhibition experience. This project showcases the biographies of Indonesian musicians through an immersive editorial-style interface inspired by digital museums, Spotify showcases, and Apple Music artist pages. The main goal of this project is to create a cinematic and immersive visual experience for exhibition visitors.
+An interactive digital exhibition celebrating the musical heritage and urban culture of Malang, East Java. Designed for modern museum displays and immersive digital showcases.
+
+## Concept
+Transforming the traditional museum experience into a cinematic digital journey. This archive chronicles the evolution of Malang's music scene—from its legendary rock roots to the sophisticated modern indie landscape.
 
 ## Features
 
 | Feature | Description |
 |---|---|
-| Interactive Musician Biography | Explore detailed biographies of Indonesian musicians |
-| Editorial UI Design | Modern minimalist layout inspired by music editorials |
-| Fullscreen Exhibition Mode | Optimized for kiosk and exhibition displays |
-| Smooth Scrolling Experience | Cinematic scrolling using Lenis |
-| GSAP Animations | Smooth and immersive animations |
-| Responsive Layout | Optimized for desktop and large exhibition screens |
-| Custom Cursor & Hover Effects | Interactive user experience |
-| Music Timeline Section | Showcase musician journeys and history |
-| Animated Visual Elements | Vinyl rotation, transitions, and ambient motion |
+| Immersive Museum Interface | Designed for fullscreen exhibition displays |
+| Urban Aesthetic | Minimalist layout with urban cinema influences |
+| Interactive Artist Showcase | Deep dive into the history, discography, and philosophy of local icons |
+| Kiosk Optimization | Touchscreen-friendly UI with auto-reset functionality |
+| Sonic Evolution Timeline | A visual journey through Malang's musical eras |
 
 ## Tech Stacks
-- HTML5
-- CSS3
-- JavaScript (ES6)
-- GSAP Animation
-- Lenis Smooth Scroll
+- React 18 + Vite
+- Framer Motion (Animations)
+- GSAP (High-performance visual effects)
+- Lenis (Smooth scrolling)
+- Tailwind CSS (Styling)
 
 ## 📂 Project Structure
 ```bash
@@ -91,4 +90,4 @@ This project is created for educational and exhibition purposes.
 
 ## Author
 
-Alifia Mustika Sari
+© 2026 Alifia Mustika Sari
