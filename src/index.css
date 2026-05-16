@@ -55,14 +55,16 @@
 
 /* Scroll Hide */
 ::-webkit-scrollbar {
-  width: 6px;
+  display: none;
 }
-::-webkit-scrollbar-track {
-  background: transparent;
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--color-ink);
-  border-radius: 10px;
+
+/* Kiosk Mode Constraints */
+body {
+  @apply select-none;
 }
 
 /* Animations */

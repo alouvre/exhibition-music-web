@@ -130,18 +130,27 @@ const MUSICIANS: Musician[] = [
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
+      setIsVisible(true);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => setIsVisible(false), 3000);
     };
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (
     <motion.div
       className="custom-cursor hidden md:block"
+      style={{ opacity: isVisible ? 1 : 0 }}
       animate={{
         x: position.x - 10,
         y: position.y - 10,
@@ -171,7 +180,7 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        Indonesian Music Archive
+        Malang Music Archive
       </motion.div>
       <motion.div
         className="w-48 h-[1px] bg-white/20 mt-8 relative overflow-hidden"
@@ -201,6 +210,18 @@ export default function App() {
     restDelta: 0.001
   });
 
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+      });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -221,7 +242,7 @@ export default function App() {
         {/* Header */}
         <header className="fixed top-0 left-0 w-full p-8 md:p-12 flex justify-between items-baseline z-[80]">
           <div className="flex flex-col">
-            <span className="text-[10px] font-black tracking-[0.3em] uppercase mix-blend-difference invert cursor-pointer" onClick={() => setSelectedMusician(null)}>Indonesian Music Archive</span>
+            <span className="text-[10px] font-black tracking-[0.3em] uppercase mix-blend-difference invert cursor-pointer" onClick={() => setSelectedMusician(null)}>Malang Music Archive</span>
             <span className="text-[8px] opacity-40 uppercase tracking-[0.2em] mix-blend-difference invert mt-1">Exhibition 2026 // Vol. 01</span>
           </div>
           
@@ -230,14 +251,22 @@ export default function App() {
             <a href="#archive" className="opacity-40 hover:opacity-100 transition-opacity">Archive</a>
           </nav>
 
-          <button 
-            onClick={() => setExhibitionMode(!exhibitionMode)}
-            className={`px-6 py-2 border text-[9px] tracking-[0.3em] transition-all uppercase font-bold ${
-              exhibitionMode ? 'border-white hover:bg-white hover:text-black' : 'border-black hover:bg-black hover:text-white'
-            }`}
-          >
-            {exhibitionMode ? 'Exit Mode' : 'Exhibition'}
-          </button>
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={toggleFullscreen}
+              className={`px-4 py-2 border text-[9px] tracking-[0.3em] transition-all uppercase font-bold mix-blend-difference invert hidden md:block`}
+            >
+              Fullscreen
+            </button>
+            <button 
+              onClick={() => setExhibitionMode(!exhibitionMode)}
+              className={`px-6 py-2 border text-[9px] tracking-[0.3em] transition-all uppercase font-bold ${
+                exhibitionMode ? 'border-white hover:bg-white hover:text-black' : 'border-black hover:bg-black hover:text-white'
+              }`}
+            >
+              {exhibitionMode ? 'Exit Mode' : 'Exhibition'}
+            </button>
+          </div>
         </header>
 
         {/* Hero Section */}
@@ -258,7 +287,7 @@ export default function App() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, delay: 0.2 }}
                 >
-                  SOUNDS OF<br/>INDONESIA
+                  SOUNDS OF<br/>MALANG
                 </motion.h1>
                 <motion.div 
                   className="mt-12 flex items-center gap-6"
@@ -457,7 +486,7 @@ export default function App() {
              <div className="container max-w-7xl mx-auto">
                 <div className="text-center mb-32">
                    <span className="text-[10px] uppercase tracking-[1em] font-bold opacity-30 mb-8 block">Cultural Timeline</span>
-                   <h2 className="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8]">The Evolution<br/>of ID Music</h2>
+                   <h2 className="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8]">The Evolution<br/>of Malang Music</h2>
                 </div>
                 
                 <div className="flex flex-col gap-px bg-ink/10">
@@ -480,13 +509,39 @@ export default function App() {
           </section>
         )}
 
+        {/* Global Quote Section */}
+        {!selectedMusician && (
+          <section className="py-64 bg-zinc-950 text-off-white overflow-hidden relative">
+            <motion.div 
+              className="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none"
+              style={{ x: -100 }}
+              animate={{ x: 100 }}
+              transition={{ duration: 20, repeat: Infinity, repeatType: "mirror" }}
+            >
+              <span className="text-[40vw] font-black italic whitespace-nowrap">MALANG_SOUNDS</span>
+            </motion.div>
+            <div className="container max-w-5xl mx-auto px-12 relative z-10 text-center">
+              <motion.h2 
+                className="text-5xl md:text-8xl font-black italic tracking-tighter leading-none mb-12 uppercase"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+              >
+                "Music is the only language that honors the silence of the soul."
+              </motion.h2>
+              <div className="w-24 h-1 bg-accent mx-auto mb-8" />
+              <span className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-40">Archive Manifesto // Vol. 01</span>
+            </div>
+          </section>
+        )}
+
         {/* Footer */}
         <footer className="py-32 p-12 border-t border-ink mt-48 relative overflow-hidden">
           <div className="container max-w-7xl mx-auto grid md:grid-cols-3 gap-16 relative z-10">
             <div className="space-y-8">
-              <span className="text-3xl font-black uppercase tracking-tighter italic">IMA展</span>
+              <span className="text-3xl font-black uppercase tracking-tighter italic">MMA展</span>
               <p className="text-[10px] uppercase tracking-[0.4em] font-medium opacity-40 leading-relaxed">
-                Indonesian Music Archive (IMA) is a digital tribute to the structural evolution of sound within the archipelago. Dedicated to the visionaries of the past and the architects of the future.
+                Malang Music Archive (MMA) is a digital tribute to the structural evolution of sound within the city of Malang. Dedicated to the visionaries of the past and the architects of the future.
               </p>
             </div>
 
@@ -508,20 +563,10 @@ export default function App() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between items-end">
-               <div className="flex gap-8 text-[11px] font-black uppercase tracking-[0.3em]">
-                 <a href="#" className="hover:text-accent transition-colors">Twitter</a>
-                 <a href="#" className="hover:text-accent transition-colors">Spotify</a>
-                 <a href="#" className="hover:text-accent transition-colors">Instagram</a>
-               </div>
-               <div className="text-right mt-16 md:mt-0">
-                  <span className="text-[8px] uppercase tracking-[0.6em] font-black opacity-30">© 2026 Archive.ID // All Signals Reserved</span>
-               </div>
-            </div>
           </div>
           
           <div className="absolute -bottom-1/2 left-0 text-[30vw] font-black opacity-[0.02] tracking-tighter pointer-events-none select-none italic">
-            INDONESIA
+            MALANG
           </div>
         </footer>
 
@@ -530,7 +575,7 @@ export default function App() {
       {/* Global Exhibition Sidebar Decor */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[90] hidden md:flex flex-col items-center gap-8">
          <div className="h-24 w-[1px] bg-ink/10" />
-         <span className="text-[8px] uppercase tracking-[0.8em] font-black vertical-text opacity-40">IMA_SYSTEM_VOL_1</span>
+         <span className="text-[8px] uppercase tracking-[0.8em] font-black vertical-text opacity-40">MMA_SYSTEM_VOL_1</span>
          <div className="h-24 w-[1px] bg-ink/10" />
       </div>
 
