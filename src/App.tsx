@@ -536,7 +536,7 @@ export default function App() {
         )}
 
         {/* Footer */}
-        <footer className="py-32 p-12 border-t border-ink mt-48 relative overflow-hidden">
+        <footer className="py-32 p-12 relative overflow-hidden">
           <div className="container max-w-7xl mx-auto grid md:grid-cols-3 gap-16 relative z-10">
             <div className="space-y-8">
               <span className="text-3xl font-black uppercase tracking-tighter italic">MMA展</span>
@@ -571,13 +571,6 @@ export default function App() {
         </footer>
 
       </main>
-
-      {/* Global Exhibition Sidebar Decor */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[90] hidden md:flex flex-col items-center gap-8">
-         <div className="h-24 w-[1px] bg-ink/10" />
-         <span className="text-[8px] uppercase tracking-[0.8em] font-black vertical-text opacity-40">MMA_SYSTEM_VOL_1</span>
-         <div className="h-24 w-[1px] bg-ink/10" />
-      </div>
 
       <style>{`
         .vertical-text {
