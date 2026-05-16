@@ -14,10 +14,10 @@ export const PlaylistSection: React.FC<PlaylistSectionProps> = ({ musician, acti
     <section className="bg-ink text-off-white relative flex flex-col md:flex-row overflow-hidden border-t border-white/10">
       
       {/* Left Column: Scrollable Archive List */}
-      <div className="w-full md:w-1/2 h-screen flex flex-col p-12 md:p-24 border-r border-white/10 overflow-hidden">
+      <div className="w-full md:w-[30%] h-screen flex flex-col p-8 md:p-12 border-r border-white/10 overflow-hidden">
         <div className="mb-8">
           <span className="text-[10px] uppercase tracking-[0.5em] font-bold text-accent mb-4 block">Music Archive</span>
-          <h3 className="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.8] italic">THE<br/>CATALOG</h3>
+          <h3 className="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-[0.8] italic">THE<br/>CATALOG</h3>
         </div>
 
         <div className="flex-1 overflow-y-auto no-scrollbar pr-4 space-y-1 relative group/list">
@@ -27,16 +27,16 @@ export const PlaylistSection: React.FC<PlaylistSectionProps> = ({ musician, acti
             <motion.div 
               key={idx} 
               onClick={() => onSongSelect(song)}
-              className={`group relative flex items-center justify-between py-10 px-8 border-b border-white/5 cursor-pointer transition-all duration-500 overflow-hidden ${activeSong?.id === song.id ? 'bg-white/5' : 'hover:bg-white/5'}`}
+              className={`group relative flex items-center justify-between py-6 px-6 border-b border-white/5 cursor-pointer transition-all duration-500 overflow-hidden ${activeSong?.id === song.id ? 'bg-white/5' : 'hover:bg-white/5'}`}
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.1 * idx }}
               whileHover={{ x: 10 }}
             >
-              <div className="flex items-center gap-12 z-10">
+              <div className="flex items-center gap-6 z-10">
                 <span className={`text-[10px] font-bold transition-all duration-500 ${activeSong?.id === song.id ? 'text-accent opacity-100' : 'opacity-20 group-hover:opacity-100'}`}>0{idx + 1}</span>
                 <div className="flex flex-col">
-                  <h5 className={`text-4xl font-black uppercase tracking-tighter transition-all duration-500 ${activeSong?.id === song.id ? 'text-accent' : 'opacity-60 group-hover:opacity-100'}`}>{song.title}</h5>
+                  <h5 className={`text-2xl font-black uppercase tracking-tighter transition-all duration-500 ${activeSong?.id === song.id ? 'text-accent' : 'opacity-60 group-hover:opacity-100'}`}>{song.title}</h5>
                   <span className="text-[9px] uppercase tracking-[0.3em] opacity-40 font-bold block mt-1">{song.album}</span>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export const PlaylistSection: React.FC<PlaylistSectionProps> = ({ musician, acti
       </div>
 
       {/* Right Column: YouTube Music Video / Visual Exhibition Wall */}
-      <div className="w-full md:w-1/2 h-[60vh] md:h-screen sticky top-0 bg-zinc-900 overflow-hidden flex items-center justify-center border-l border-white/10">
+      <div className="w-full md:w-[70%] h-[60vh] md:h-screen sticky top-0 bg-zinc-900 overflow-hidden flex items-center justify-center border-l border-white/10">
         <AnimatePresence mode="wait">
           <motion.div 
             key={activeSong?.id || 'static'}
