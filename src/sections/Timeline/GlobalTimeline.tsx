@@ -7,22 +7,37 @@ const TIMELINE_DATA = [
   { era: '2010s', label: 'Modern Renaissance', artists: 'Sal Priadi, Tulus' },
 ];
 
-export const GlobalTimeline = () => {
+interface GlobalTimelineProps {
+  exhibitionMode?: boolean;
+}
+
+export const GlobalTimeline: React.FC<GlobalTimelineProps> = ({ exhibitionMode }) => {
   return (
-    <section id="archive" className="py-48 p-12 border-t border-ink/5">
+    <section id="archive" className={`py-48 p-12 border-t ${exhibitionMode ? 'border-white/5' : 'border-ink/5'}`}>
       <div className="container max-w-7xl mx-auto">
         <div className="text-center mb-32">
           <span className="text-[10px] uppercase tracking-[1em] font-bold opacity-30 mb-8 block">Cultural Timeline</span>
           <h2 className="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8]">The Evolution<br/>of Malang Music</h2>
         </div>
         
-        <div className="flex flex-col gap-px bg-ink/10">
+        <div className={`flex flex-col gap-px ${exhibitionMode ? 'bg-white/10' : 'bg-ink/10'}`}>
           {TIMELINE_DATA.map((item, idx) => (
-            <div key={idx} className="bg-off-white p-12 flex flex-col md:flex-row justify-between items-center group cursor-default">
-              <div className="text-6xl font-black italic tracking-tighter opacity-10 group-hover:opacity-100 group-hover:text-accent transition-all duration-500">{item.era}</div>
+            <div 
+              key={idx} 
+              className={`p-12 flex flex-col md:flex-row justify-between items-center group cursor-default transition-colors duration-700 ${
+                exhibitionMode ? 'bg-zinc-900/50 hover:bg-zinc-800' : 'bg-off-white hover:bg-white'
+              }`}
+            >
+              <div className="text-6xl font-black italic tracking-tighter opacity-10 group-hover:opacity-100 group-hover:text-accent transition-all duration-500">
+                {item.era}
+              </div>
               <div className="text-center md:text-right">
-                <span className="text-xl font-bold uppercase tracking-tighter block mb-2">{item.label}</span>
-                <span className="text-[10px] uppercase tracking-[0.3em] opacity-40 font-bold">{item.artists}</span>
+                <span className={`text-xl font-bold uppercase tracking-tighter block mb-2 ${exhibitionMode ? 'text-off-white/90' : 'text-ink'}`}>
+                  {item.label}
+                </span>
+                <span className={`text-[10px] uppercase tracking-[0.3em] font-bold ${exhibitionMode ? 'text-off-white/40' : 'opacity-40'}`}>
+                  {item.artists}
+                </span>
               </div>
             </div>
           ))}

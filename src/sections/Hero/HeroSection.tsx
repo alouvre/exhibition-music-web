@@ -2,13 +2,17 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Disc } from 'lucide-react';
 
-export const HeroSection = () => {
+interface HeroSectionProps {
+  exhibitionMode?: boolean;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ exhibitionMode }) => {
   return (
     <section className="relative min-h-screen flex items-center justify-center p-12 overflow-hidden">
       <div className="container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between relative z-10 w-full">
         <div className="w-full md:w-1/2">
           <motion.span 
-            className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-40 block mb-6"
+            className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-40 block mb-6 px-1"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -29,7 +33,9 @@ export const HeroSection = () => {
              transition={{ delay: 1 }}
           >
             <div className="w-16 h-[1px] bg-accent" />
-            <p className="text-xs uppercase tracking-[0.3em] font-medium opacity-60">Exploration of Legends & Icons</p>
+            <p className={`text-xs uppercase tracking-[0.3em] font-medium ${exhibitionMode ? 'text-off-white/60' : 'opacity-60'}`}>
+              Exploration of Legends & Icons
+            </p>
           </motion.div>
         </div>
 
@@ -41,17 +47,19 @@ export const HeroSection = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 1.2, delay: 0.5 }}
           >
-            <div className="w-64 h-64 md:w-80 md:h-80 border border-ink/10 flex items-center justify-center relative overflow-hidden bg-white/5">
-              <Disc className="text-ink opacity-10 animate-spin-slow" size={240} strokeWidth={0.5} />
+            <div className={`w-64 h-64 md:w-80 md:h-80 border ${exhibitionMode ? 'border-white/10' : 'border-ink/10'} flex items-center justify-center relative overflow-hidden bg-white/5`}>
+              <Disc className={`${exhibitionMode ? 'text-off-white' : 'text-ink'} opacity-10 animate-spin-slow`} size={240} strokeWidth={0.5} />
               <div className="absolute inset-0 flex items-center justify-center">
-                 <span className="text-[10px] font-black uppercase tracking-widest bg-ink text-off-white px-4 py-2">Start Journey</span>
+                 <span className={`text-[10px] font-black uppercase tracking-widest ${exhibitionMode ? 'bg-off-white text-ink' : 'bg-ink text-off-white'} px-4 py-2`}>
+                   Start Journey
+                 </span>
               </div>
             </div>
             <div className="absolute -bottom-8 -right-8 opacity-20 text-6xl font-black italic">Archive</div>
           </motion.div>
         </div>
       </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] text-[400px] font-black pointer-events-none select-none z-0">2026</div>
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-black pointer-events-none select-none z-0 text-[400px] ${exhibitionMode ? 'opacity-[0.03]' : 'opacity-[0.02]'}`}>2026</div>
     </section>
   );
 };

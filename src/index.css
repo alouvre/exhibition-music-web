@@ -12,9 +12,17 @@
 }
 
 :root {
+  font-size: 90%; /* Global 90% scaling for exhibition screens */
   cursor: none;
   background-color: var(--color-off-white);
   color: var(--color-ink);
+}
+
+@media (min-width: 1920px) {
+  :root {
+    font-size: 100%; /* Restore 100% on very large screens if needed, or keep 90% for "zoom out" feel */
+    /* The user specifically asked for zoom out, so maybe keep 90% even on large screens */
+  }
 }
 
 @layer base {

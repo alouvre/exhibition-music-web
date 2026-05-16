@@ -58,7 +58,7 @@ export default function App() {
         style={{ scaleX }}
       />
 
-      <main className={`transition-colors duration-1000 ${exhibitionMode ? 'bg-zinc-950 text-off-white' : 'bg-off-white text-ink'}`}>
+      <main className={`transition-colors duration-1000 ${exhibitionMode ? 'bg-zinc-950 text-off-white exhibition-active' : 'bg-off-white text-ink'}`}>
         
         <Header 
           exhibitionMode={exhibitionMode}
@@ -69,12 +69,13 @@ export default function App() {
 
         {!selectedMusician ? (
           <>
-            <HeroSection />
+            <HeroSection exhibitionMode={exhibitionMode} />
             <MusicianGallery 
               musicians={MUSICIANS} 
               onSelect={handleMusicianSelect} 
+              exhibitionMode={exhibitionMode}
             />
-            <GlobalTimeline />
+            <GlobalTimeline exhibitionMode={exhibitionMode} />
             <GlobalQuote />
           </>
         ) : (
@@ -89,6 +90,7 @@ export default function App() {
               <BiographySection 
                 musician={selectedMusician} 
                 onBack={handleBackToGallery} 
+                exhibitionMode={exhibitionMode}
               />
               
               <GlobalQuote 

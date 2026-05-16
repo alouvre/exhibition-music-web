@@ -6,11 +6,14 @@ import { Musician } from '../../types';
 interface MusicianGalleryProps {
   musicians: Musician[];
   onSelect: (musician: Musician) => void;
+  exhibitionMode?: boolean;
 }
 
-export const MusicianGallery: React.FC<MusicianGalleryProps> = ({ musicians, onSelect }) => {
+export const MusicianGallery: React.FC<MusicianGalleryProps> = ({ musicians, onSelect, exhibitionMode }) => {
   return (
-    <section id="showcase" className="min-h-screen py-32 p-12 bg-zinc-100/30">
+    <section id="showcase" className={`min-h-screen py-32 p-12 transition-colors duration-1000 ${
+      exhibitionMode ? 'bg-zinc-900/20' : 'bg-zinc-100/30'
+    }`}>
       <div className="container max-w-7xl mx-auto">
         <div className="flex justify-between items-end mb-24">
           <div>
