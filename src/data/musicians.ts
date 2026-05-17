@@ -81,24 +81,73 @@ export const MUSICIANS: Musician[] = [
     genre: 'ALT POP',
     origin: 'MALANG, ID',
     activeSince: '2015',
-    biography: 'A modern icon of Indonesian alternative music. Sal Priadi blends poetic lyricism with eccentric pop sensibilities, creating a theatrical experience that resonates with the modern generation.',
+    biography: 'Sal Priadi is one of the most distinctive voices in contemporary Indonesian music. Originating from Malang, his works combine poetic storytelling, theatrical performance, and emotionally vulnerable lyricism with modern alternative pop production. His artistic identity often explores intimacy, anxiety, romance, and human fragility through cinematic compositions and expressive visual aesthetics.',
     quote: "I write what my heart fails to say out loud.",
     image: 'https://images.unsplash.com/photo-1520166012956-add9ba0835cb?q=80&w=800',
     songs: [
-      { id: '01', title: 'Amin Paling Serius', album: 'Berhati', duration: '7:06', youtubeId: 'tCE9U4D995s' },
-      { id: '02', title: 'Mesra-mesraannya kecil-kecilan dulu', album: 'Markers and Such', duration: '3:38', youtubeId: 'aHxxbTq0TXE' },
-      { id: '03', title: 'Semua lagu cinta', album: 'Berhati', duration: '3:56', youtubeId: 'EQMcH8h74-c' },
-      { id: '04', title: 'Ada titik-titik di ujung doa', album: 'Berhati', duration: '5:10', youtubeId: '63H7pcUUm6s' },
-      { id: '05', title: 'Gala bunga matahari', album: 'Markers and Such', duration: '5:27', youtubeId: 'AQpEIZ8dNcU' },
-      { id: '06', title: 'Kita usahakan rumah itu', album: 'Single', duration: '3:31', youtubeId: '7SqNVv98e8Q' },
-      { id: '07', title: 'I’d like to watch you sleeping', album: 'Berhati', duration: '5:31', youtubeId: '4OL6d6NZ3I0' },
+      { id: '01', title: 'Amin Paling Serius', album: 'Berhati', duration: '7:10', youtubeId: 'tCE9U4D995s' },
+      { id: '02', title: 'Mesra-mesraannya kecil-kecilan dulu', album: 'Markers and Such', duration: '3:26', youtubeId: 'aHxxbTq0TXE' },
+      { id: '03', title: 'Semua lagu cinta', album: 'Markers and Such', duration: '3:35', youtubeId: 'EQMcH8h74-c' },
+      { id: '04', title: 'Ada titik-titik di ujung doa', album: 'Markers and Such', duration: '5:10', youtubeId: '63H7pcUUm6s' },
+      { id: '05', title: 'Gala bunga matahari', album: 'Markers and Such', duration: '4:08', youtubeId: 'AQpEIZ8dNcU' },
+      { id: '06', title: 'Kita usahakan rumah itu', album: 'Markers and Such', duration: '3:10', youtubeId: '7SqNVv98e8Q' },
+      { id: '07', title: 'I’d like to watch you sleeping', album: 'Markers and Such', duration: '5:31', youtubeId: '4OL6d6NZ3I0' },
     ],
     albums: [
-      { title: 'Berhati', year: '2020', cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=400' },
+      {
+        title: 'Berhati',
+        year: '2020',
+        cover:
+          'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=400',
+      },
+      {
+        title: 'Markers and Such Pens Flashdisks',
+        year: '2024',
+        cover:
+          'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=400',
+      },
     ],
     timeline: [
-      { year: '2018', event: 'Breakthrough with the single "Kultusan".' },
-      { year: '2020', event: 'Released the critically acclaimed album "Berhati".' },
-    ]
+      {
+        year: '2015',
+        event:
+          'Started gaining attention through independent music releases and live performances in Malang and Jakarta.',
+      },
+      {
+        year: '2017',
+        event:
+          'Released several early singles showcasing his poetic songwriting and theatrical vocal character.',
+      },
+      {
+        year: '2018',
+        event:
+          'Breakthrough moment after the release of "Kultusan", introducing his distinctive emotional storytelling style to wider audiences.',
+      },
+      {
+        year: '2019',
+        event:
+          'Collaborated with multiple Indonesian musicians and became recognized as one of the rising alternative pop artists in Indonesia.',
+      },
+      {
+        year: '2020',
+        event:
+          'Released debut studio album "Berhati", receiving critical acclaim for its cinematic production and lyrical vulnerability.',
+      },
+      {
+        year: '2021',
+        event:
+          'Expanded his artistic identity through immersive live performances and visual-driven stage concepts.',
+      },
+      {
+        year: '2023',
+        event:
+          'Became one of the prominent figures in Indonesia’s modern art-pop movement and digital music culture.',
+      },
+      {
+        year: '2024',
+        event:
+          'Released "Markers and Such Pens Flashdisks", strengthening his reputation for experimental yet emotionally intimate songwriting.',
+      },
+    ],
   }
 ];
